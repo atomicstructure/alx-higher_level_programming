@@ -1,25 +1,45 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if (roman_string is None) or (type(roman_string) != str):
+    # Fail checks, none, not a string
+    if not roman_string:
         return 0
-
-    roman = 0
-    nums = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
+    if not isinstance(roman_string, str):
+        return 0
+    if not roman_string.isupper():
+        return 0
+    # Dictionary for roman numerals
+    r_dict = {
+        "I": 1,
+        "IV": 4,
+        "V": 5,
+        "IX": 9,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
     }
 
-    limit = len(roman_string)
-    for ch in range(0, limit):
-        if ch == len(roman_string) - 1:
-            roman += nums[roman_string[ch]]
-        elif nums[roman_string[ch]] >= nums[roman_string[ch + 1]]:
-            roman += nums[roman_string[ch]]
-        else:
-            roman -= nums[roman_string[ch]]
+    result = 0
+    temp = list(roman_string)
+    # Concat 4 and 9s
+    if len(temp) > 1:
+        idx = 0
+        for i in temp:
+            try:
+                if temp[idx] == 'I' and temp[idx + 1] == 'V':
+                    temp[idx:idx + 2] = [''.join(temp[idx:idx + 2])]
+            except IndexError:
+                pass
+            try:
+                if temp[idx] == 'I' and temp[idx + 1] == 'X':
+                    temp[idx:idx + 2] = [''.join(temp[idx:idx + 2])]
+            except IndexError:
+                pass
+            idx += 1
+    # Search in dict for correct numbers and add
+    for k, v in r_dict.items():
+        for index in temp:
+            if index == k:
+                result += v
     return 
