@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+# test_square.py
+# Gedeon Obae Gekonge <gideonobae@gmail.com>
 """Defines unittests for models/square.py.
 Unittest classes:
     TestSquare_instantiation - line 24
@@ -652,7 +653,6 @@ class TestSquare_to_dictionary(unittest.TestCase):
         s = Square(10, 10, 10, 10)
         with self.assertRaises(TypeError):
             s.to_dictionary(1)
-
 
 if __name__ == "__main__":
     unittest.main()
