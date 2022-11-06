@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# 3-say_my_name.py
-# 
 """Defines a name-printing function."""
 
 
